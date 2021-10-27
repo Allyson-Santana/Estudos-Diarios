@@ -1,0 +1,63 @@
+Lançado em setebro de 1995
+Criado por Brendan Eich 
+
+ECMAScript: {
+    ECMAScript é uma linguagem de programação, baseada em scripts, 
+    padronizada pela Ecma International na especificação ECMA-262 e ISO/IEC 
+}
+TC39: {
+    Comiter responsaveis pela evolução do javascript
+}
+ES2018: {
+    Operadores rest/spread
+    Iteração assicrona
+    Promisse.prototype.finally()
+}
+
+Sobre o javascript: {
+    É uma linguagem interpretada 
+    Linguagem de tipagem fraca e dinâmica
+    Função de primeira classe: {
+        A função pode se atribuida a uma: 
+        variavel, 
+        estrutura de dados: dentro de arrays e objects,
+        Pode se passadas por argumentos
+        Retorna a outras função
+    }
+    Closure: {
+        Capacidade de uma variavel lembrar do ambiente que ela foi criada.
+        Espoco de GLOBAL, Espoco de FUNÇÂO, Espoco de BLOCO
+    },
+    Currying: {
+        Possibilita a função passar parametros que retorna outra função pelos proprios parametros
+    }
+    Hoisting: {
+        Possibilita você chamar uma função declarada depois do Espoco
+    }
+    Imutabilidade: {
+        Imutabilidade significa que a mudança não é feita no mesmo objeto, estrutura, 
+        mas a mudança é representada em um novo. Cada mudança cria um novo valor e não toca no antigo.
+    }
+} 
+               
+                    /** OBJECTS **/
+/**
+ * Herança: baseada em protótipos { 
+    * prototype: Armazena as definições do objeto
+    * __proto__: Aponta para o prototype do tipo criado
+    * Esse tipo a gente chama de constructor
+ * }
+ * Classes: {
+    * Criação de Class 
+    * Class que extende outra class
+ * }
+ * Modificadores de acesso: {
+    * O acesso da variavel no escopo da class é privado 
+    * Acesso feito por funções get e set
+ * }
+ * Static: {
+    * Acessar método/Atributos sem instanciar
+ * }
+ */
+
+ 

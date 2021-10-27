@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+
+{% block head %} 
+    <div class="head">
+        <img src="{{asset('img/img2.png')}}" width=300 alt="Error" />
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+{% endblock %}
+
+{% block title %} Tela Inicial {% endblock %}
+
+{# Formulario de cadastro de usuário #}
+{% block body %}
+    <form action="{{ url('web_user_salvar') }}" method="POST">
+        <input type="text" name="name" placeholder="Nome" />
+        <input type="email" name="email" placeholder="E-mail" />
+
+        <input type="submit" value="Enviar" />
+    </form>
+{% endblock %}
