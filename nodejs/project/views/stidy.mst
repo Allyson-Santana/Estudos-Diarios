@@ -1,0 +1,26 @@
+<h1>Seja bem vindo</h1>
+
+{{! Exibir de acordo com a condicional }}
+{{#status}} {{! if booleano }}
+    <p>Olá {{ name }} - Idade: {{age}}</p>
+{{/status}}
+
+{{! Exibir valores de objetos }}
+<ul>
+{{#children}}
+    <li> Filho(a): {{ name }} - Idade: {{ age }} </li>
+{{/children}}
+</ul>
+{{^children}}
+    <p> Não tem filhos </p>
+{{/children}}
+
+{{! Exibir valores array }}
+<ul>
+{{#interest}}
+    <li> {{.}} </li>
+{{/interest}}
+</ul>
+
+{{! Para intepretar um HTML coloca-se 3 chaves }}
+{{{ strong }}}

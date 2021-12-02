@@ -1,4 +1,3 @@
-const app = require("./app");
 const mongoose = require('mongoose');
 
 // importando para pode utilizar as variáveis de ambiente
@@ -12,7 +11,13 @@ mongoose.connection.on('Error', error => {
     console.error(`ERROR: ${error.message}`); 
 });
 
+// Carregando todos os models
+require('./models/Post');
+
+
+const app = require("./app");
+
 // Realizar a conexão ao servidor 
-app.listen(process.env.PORT || 8000, ()=>{
+app.listen(process.env.PORT || 7777, () => {
     console.log(`Runding server - port: ${process.env.PORT || 8000}`);
-}); 
+});  

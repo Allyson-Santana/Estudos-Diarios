@@ -1,0 +1,17 @@
+{{>header}}
+
+<h1> Editar post </h1>
+
+<form action="#" method="POST" name="formSingIn">
+    <label>Titulo:</label><br/>
+    <input type="text" name="title" value="{{post.title}}" /> <br/>
+    
+    <label>Descrição</label><br/>
+    <textarea type="text" name="desc" > {{post.body}} </textarea>  <br/>
+
+    <label> Tags: <small>(Separe as tags por virgula)</small> </label> <br/>
+    <input type="text" name="tags" value="{{post.tags}}" /><br/>
+
+    <br/>
+    <button type="submit"> Editar </button>
+</form>

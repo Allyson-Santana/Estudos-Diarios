@@ -1,0 +1,19 @@
+ {{> header }} {{! inportando página de header }}
+
+<h1>Page Home</h1>
+
+<p>Infomações do usuário logado - simbolico: </p>
+
+ID: {{ userInfors.id  }}  -
+Nome: {{ userInfors.name  }}
+
+<br /><br />
+<h1>Meus posts abaixo:</h2>
+<br />
+
+{{#posts}}
+    <h3> {{title}} </H3>
+    <p> {{body}} </p>
+    <a href="/post/{{slug}}/edit"> [Editar] </a>
+    <hr />
+{{/posts}}
