@@ -1,11 +1,9 @@
-
 const service = require('../services/service');
 
 module.exports = {
 
     findAll: async (req, res) => {
-        let responseJson = { error:'', result:[] };
-
+        let responseJson = { error: '', result: [] };
         let notes = await service.getFindAll();
 
         for(let i in notes) {
@@ -18,19 +16,36 @@ module.exports = {
         res.json(responseJson);
     },
 
-    find: (req, res) => {
+    find: async (req, res) => {
+        let responseJson = { error: '', result: {} };
+        let note = await service.getFind(req.params.id);
+
+        if(note) responseJson.result = note;
+
+        res.json(responseJson);
+    },
+
+    create: async (req, res) => {
+        let responseJson = { error: '', result: {} };        
+
+        if(req.body.title) {
+            noteId = await service.createNew(req.body.title);
+            responseJson.result = {
+                id: noteId,        
+                title: req.body.title
+            }
+        } else {
+            responseJson.error = "Campos não enviados";    
+        }
+        
+        res.json(responseJson);
+    },
+
+    update: async (req, res) => {
         res.send({ping: 'OK'});
     },
 
-    create: (req, res) => {
-        res.send({ping: 'OK'});
-    },
-
-    update: (req, res) => {
-        res.send({ping: 'OK'});
-    },
-
-    destroy: (req, res) => {
+    destroy: async (req, res) => {
         res.send({ping: 'OK'});
     }
 

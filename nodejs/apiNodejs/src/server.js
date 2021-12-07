@@ -6,11 +6,10 @@ const bodyParser = require('body-parser');
 const routers = require('./routers');
 
 const server = express();
-//server.use(express.json());
+server.use(express.json());
+
 server.use(cors());
-server.use(bodyParser.urlencoded({extends: false}));
+server.use(bodyParser.urlencoded({extended: false}));
 
 server.use('/api', routers);
 server.listen(process.env.PORT, () => console.log("Runding server..."));
-
-
