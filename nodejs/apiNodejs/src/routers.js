@@ -11,6 +11,6 @@ routers.get('/notes', controller.findAll);
 routers.get('/note/:id', controller.find);
 routers.post('/note', controller.create);
 routers.put('/note/:id', controller.update);
-routers.get('/note/:id', controller.destroy);
+routers.delete('/note/:id', controller.destroy);
 
 module.exports = routers;

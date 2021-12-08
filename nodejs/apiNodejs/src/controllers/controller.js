@@ -42,11 +42,29 @@ module.exports = {
     },
 
     update: async (req, res) => {
-        res.send({ping: 'OK'});
+        let responseJson = { error: '', result: {} };
+        let inforUpdate = {
+            id: req.params.id,
+            title: req.body.title
+        };
+        let {id, title} = inforUpdate; 
+        if(id && title) {
+            await service.update(inforUpdate);
+            responseJson.result = {id, title}
+        } else {
+            responseJson.error = "Opsss... Algo error ao atualizar";
+        }
+        
+        res.json(responseJson);
     },
 
     destroy: async (req, res) => {
-        res.send({ping: 'OK'});
+        let responseJson = { error: '', result: {} };
+
+        await service.destroy(req.params.id);
+        responseJson.result = "Usuário excluido com sucesso!";
+
+        res.json(responseJson);
     }
 
 }

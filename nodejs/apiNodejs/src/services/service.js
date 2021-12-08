@@ -31,5 +31,21 @@ module.exports = {
                 resolve(result.insertId);
             });
         });
+    }, 
+    update: ({ title, id }) => {
+        return new Promise( (resolve, reject) => {
+            db.query('UPDATE notes SET title = ? WHERE id = ?', [title, id], (error, result) => {
+                if(error) return reject(error);
+                resolve(result);
+            });
+        });
+    },
+    destroy: (id) => {
+        return new Promise ((resolve, reject) => {
+            db.query('DELETE FROM notes WHERE id = ?',[id], (error, result) => {
+                if(error) return reject(error);
+                resolve(result);
+            });
+        });
     }
 }
