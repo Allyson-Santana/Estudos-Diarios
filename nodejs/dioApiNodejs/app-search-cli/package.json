@@ -1,0 +1,15 @@
+{
+  "name": "app-search-cli",
+  "version": "1.0.0",
+  "description": "app de comando cli",
+  "preferGlobal": true,
+  "bin": {
+    "search-files": "./bin/search-files-cli"
+  },
+  "files": [
+    "./bin"
+  ],
+  "keywords": [],
+  "author": "Allyson Santana",
+  "license": "ISC"
+}
