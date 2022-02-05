@@ -13,23 +13,25 @@ function getUser() {
 }
 
 function getPhone(idUser) {
-   return new Promise(function(resolve, reject) {
-    setTimeout(() => {
-        return resolve({
-            ddd: 13,
-            phone: 123456789
-        })
-    }, 1500);
-   })
+    console.log(idUser);
+    return new Promise(function(resolve, reject) {
+        setTimeout(() => {
+            return resolve({
+                ddd: 13,
+                phone: 123456789
+            })
+        }, 1500);
+    })
 }
 
 function getAddress(idUser, callback) {
-   setTimeout(() => {
-       return callback(null,{
-           street: 'Dos bobos',
-           number: 0
-       })
-   }, 500);
+    console.log(idUser);
+    setTimeout(() => {
+        return callback(null,{
+            street: 'Dos bobos',
+            number: 0
+        })
+    }, 500);
 }
 
 const getAddressAsync = promisify(getAddress);
