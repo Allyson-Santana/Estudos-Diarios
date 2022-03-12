@@ -12,6 +12,15 @@ const writeFileAsync = promisify(writeFile);
 class Database {
 	constructor() {
 		this.name_file = "herois.json";
+
+		this.list()
+			.then(response => console.log(response))
+
+		this.create({
+			id: "02",
+			name: "Luan",
+			lastName: "Leite"
+		}).then(response => console.log(response))
 	}
 
 	async getDateFile() {
@@ -19,7 +28,7 @@ class Database {
 		return JSON.parse(files.toString());
 	}
 
-	whiteFile(datas) {
+	async writeFileLocal(datas) {
 		await writeFileAsync(this.name_file, JSON.stringify(datas))
 		return true;
 	}
@@ -31,12 +40,12 @@ class Database {
 			id: id,
 			...herois
 		}
-		const dataEnd = {
+		const dataEnd = [
 			...datas,
-			heroisWithId: heroisWithId
-		}
+			{...heroisWithId}
+		]
 
-		const result = await this.writeFile(dataEnd);
+		const result = await this.writeFileLocal(dataEnd);
 		
 		return result;
 	}
