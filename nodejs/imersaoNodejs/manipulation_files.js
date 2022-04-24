@@ -13,14 +13,20 @@ class Database {
 	constructor() {
 		this.name_file = "herois.json";
 
-		this.list()
-			.then(response => console.log(response))
+		//this.list()
+		//	.then(response => console.log(response))
 
-		this.create({
-			id: "02",
-			name: "Luan",
-			lastName: "Leite"
-		}).then(response => console.log(response))
+		//this.create({
+		//	id: "02",
+		//	name: "Luan",
+		//	lastName: "Leite"
+		//}).then(response => console.log(response))
+		//this.destroy(2).then();
+
+		this.update(3,{
+			name: 'Batman',
+			lasname: 'Dinheiro'
+		}).then();
 	}
 
 	async getDateFile() {
@@ -54,6 +60,45 @@ class Database {
 		const datas = await this.getDateFile();
 		const dataFilters = datas.filter(item => (id ? (item.id === id)  : true) );
 		return dataFilters;
+	}
+
+	async destroy(id) {
+		if(!id) {
+			console.log("Exclusão total")
+			return await this.writeFileLocal([]);			
+		}
+		
+		const data = await this.getDateFile();
+		
+		const index = data.findIndex(item => parseInt(item.id) === parseInt(id));
+		if(index === -1) {
+			throw Error("Usuário não existe");
+		}
+
+		const newData = data.filter( item => parseInt(item.id) !== parseInt(id));
+		
+		return await this.writeFileLocal(newData);		
+	} 
+
+	async update(id, dataUpdate) {
+		if(!id) {
+			throw Error("Informe um id");
+		}
+
+		const data = await this.getDateFile();
+		
+		const index = data.findIndex(item => parseInt(item.id) === parseInt(id));
+		if(index === -1) {
+			throw Error("Usuário não existe");
+		}
+
+		data[index] = {
+			id,
+			...dataUpdate
+		};
+
+		return await this.writeFileLocal(data);
+
 	}
 }
 
