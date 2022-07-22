@@ -1,5 +1,4 @@
-const sharp = require("sharp");
-
+import sharp from 'sharp';
 /*
     The rotateImage() function now reads the image, rotate it, and applies a gaussian blur 
     to the image. It applies a gaussian blur to the image using the sharp module’s blur() method. 

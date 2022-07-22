@@ -1,5 +1,4 @@
-const sharp  = require("sharp");
-
+import sharp from 'sharp';
 /*
     ********************************************************
         sharp uses mozjpeg defaults to compress the image 

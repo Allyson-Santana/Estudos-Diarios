@@ -1,5 +1,4 @@
-const sharp = require("sharp");
-
+import sharp from 'sharp';
 /*
   Image Composition is a process of combining two or more separate pictures to 
   create a single image. This is done to create effects that borrow the best 

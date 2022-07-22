@@ -1,5 +1,4 @@
-const sharp = require("sharp");
-
+import sharp from 'sharp';
 
 /*
     Nota: Se você instalou o Node.js usando a Opção 2 — Instalando Node.js com Apt 

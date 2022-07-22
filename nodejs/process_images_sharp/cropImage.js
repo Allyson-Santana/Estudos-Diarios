@@ -1,5 +1,4 @@
-const sharp = require("sharp");
-
+import sharp from 'sharp';
 /*
   The rotateImage() function is an asynchronous function that reads an image and will 
   return the image rotated to an angle of 33 degrees. Within the function, the rotate() method of 

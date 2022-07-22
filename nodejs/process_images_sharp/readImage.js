@@ -1,8 +1,8 @@
-const sharp = require("sharp");
+import sharp from 'sharp';
 
 async function getMetadata() {
     try {
-        const metadata = await sharp("assert/sammy.png").metadata();
+        const metadata = await sharp("sammy.png").metadata();
         console.log(metadata)
     } catch (error) {
         console.log(`An error occurred during processing: ${error}`);
