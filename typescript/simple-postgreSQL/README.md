@@ -1,0 +1,10 @@
+# API com TYPESCRIPT
+
+## LIBS:
+- typescript
+- express
+- postgreSQL
+
+## Configuração de desenvolvimento com: 
+- eslint
+- ts-nde-dev
