@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "ts-node-dev src/server.ts",
     "build": "tsc src/server.ts",
-    "typeorm": "ts-node-dev -r tsconfig-paths/register ./node-modules/typeorm/cli.js*"
+    "migration:generate": "typeorm-ts-node-commonjs -d ./src/database/connection.ts migration:generate ./src/database/migrations/default",
+    "migration:run": "typeorm-ts-node-commonjs -d ./src/database/connection.ts migration:run"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -26,6 +27,7 @@
     "eslint-plugin-n": "^15.0.0",
     "eslint-plugin-promise": "^6.0.0",
     "ts-node-dev": "^2.0.0",
+    "tsconfig-paths": "^4.0.0",
     "typescript": "^4.7.4"
   }
 }
