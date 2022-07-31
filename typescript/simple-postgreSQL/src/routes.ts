@@ -4,7 +4,7 @@ import UserController from './controllers/UserController'
 const routes = Router()
 
 routes.get('/', (req, res) => {
-  res.json({ status: 200, msg: 'OK' })
+  res.json({ status: 200, message: 'OK' })
 })
 
 routes.get('/users', UserController.index)
