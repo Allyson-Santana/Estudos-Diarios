@@ -7,6 +7,7 @@ routes.get('/', (req, res) => {
   res.json({ status: 200, msg: 'OK' })
 })
 
+routes.get('/users', UserController.index)
 routes.post('/users', UserController.store)
 
 export default routes
