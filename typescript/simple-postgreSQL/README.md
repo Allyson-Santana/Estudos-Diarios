@@ -1,9 +1,10 @@
 # API com TYPESCRIPT
 
 ## LIBS:
-- typescript
+- typescript 
 - express
 - postgreSQL
+- yup
 
 ## Configuração de desenvolvimento com: 
 - eslint
