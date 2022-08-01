@@ -43,6 +43,13 @@ class UserController {
     const userUpdate = req.body
     const { id } = req.params
 
+    if (userUpdate.email) {
+      const isExistUserWithEmail = await UserService.findUserEmail(userUpdate.email)
+      if (isExistUserWithEmail) {
+        return res.status(409).json({ message: 'E-mail already exists' })
+      }
+    }
+
     const isExistUserWithId = await UserService.findUserId(id)
     if (!isExistUserWithId) {
       return res.status(404).json({ message: 'User not exists' })
