@@ -1,8 +1,9 @@
 {
   "name": "simple-postgresql",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "dev": "ts-node-dev src/server.ts",
     "build": "tsc src/server.ts",
@@ -10,10 +11,12 @@
     "migration:run": "typeorm-ts-node-commonjs -d ./src/database/connection.ts migration:run"
   },
   "dependencies": {
+    "@types/node": "^18.6.4",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "pg": "^8.7.3",
+    "reflect-metadata": "^0.1.13",
     "typeorm": "^0.3.7",
     "yup": "^0.32.11"
   },
