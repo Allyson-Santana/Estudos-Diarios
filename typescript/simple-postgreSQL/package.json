@@ -8,7 +8,8 @@
     "dev": "ts-node-dev src/server.ts",
     "build": "tsc src/server.ts",
     "migration:generate": "typeorm-ts-node-commonjs -d ./src/database/connection.ts migration:generate ./src/database/migrations/default",
-    "migration:run": "typeorm-ts-node-commonjs -d ./src/database/connection.ts migration:run"
+    "migration:run": "typeorm-ts-node-commonjs -d ./src/database/connection.ts migration:run",
+    "typeorm": "ts-node-dev node_modules/.bin/typeorm"
   },
   "dependencies": {
     "@types/node": "^18.6.4",
