@@ -1,4 +1,5 @@
 import 'reflect-metadata'
+import 'express-async-error'
 
 import app from './app'
 

@@ -1,6 +1,7 @@
 import { IUser } from '../interfaces/user'
 import { userRepository } from '../repositiries/userRepository'
 import bcrypt from 'bcrypt'
+import { ApiError } from '../helpers/ApiError'
 
 class UserService {
   async index () {
@@ -9,7 +10,7 @@ class UserService {
       return users
     } catch (error) {
       console.error(`Error - find to id user: ${error}`)
-      return { status: 500, message: 'Internal Server Error' }
+      throw new ApiError(500, 'Internal Server Error')
     }
   }
 
@@ -19,21 +20,21 @@ class UserService {
       return users
     } catch (error) {
       console.error(`Error - find to e-mail user: ${error}`)
-      return { status: 500, message: 'Internal Server Error' }
+      throw new ApiError(500, 'Internal Server Error')
     }
   }
 
-  async findUserId (id: string) {
+  async findUserId (id: string): Promise<IUser | null> {
     try {
       const users = await userRepository.findOneBy({ id })
       return users
     } catch (error) {
       console.error(`Error - create user: ${error}`)
-      return { status: 500, message: 'Internal Server Error' }
+      throw new ApiError(500, 'Internal Server Error')
     }
   }
 
-  async store (user: IUser) {
+  async store (user: IUser): Promise<IUser > {
     try {
       const hashPassword = await bcrypt.hash(user.password, 8)
 
@@ -47,30 +48,29 @@ class UserService {
       return newUser
     } catch (error) {
       console.error(`Error - create user: ${error}`)
-      return { status: 500, message: 'Internal Server Error' }
+      throw new ApiError(500, 'Internal Server Error')
     }
   }
 
-  async update (id: string, userUpdate: IUser) {
+  async update (id: string, userUpdate: IUser): Promise<void> {
     try {
       const currentUser = await userRepository.findOneBy({ id })
-      return await userRepository.update(id, {
+      await userRepository.update(id, {
         ...currentUser,
         ...userUpdate
       })
     } catch (error) {
       console.error(`Error - update user: ${error}`)
-      return { status: 500, message: 'Internal Server Error' }
+      throw new ApiError(500, 'Internal Server Error')
     }
   }
 
-  async destroy (id: string) {
+  async destroy (id: string): Promise<void> {
     try {
-      const users = await userRepository.delete(id)
-      return users
+      await userRepository.delete(id)
     } catch (error) {
       console.error(`Error - delete user: ${error}`)
-      return { status: 500, message: 'Internal Server Error' }
+      throw new ApiError(500, 'Internal Server Error')
     }
   }
 }
