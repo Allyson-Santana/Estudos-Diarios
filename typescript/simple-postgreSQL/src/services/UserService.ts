@@ -35,9 +35,15 @@ class UserService {
 
   async store (user: IUser) {
     try {
-      const passwordBcrypt = await bcrypt.hash(user.password, 8)
-      const newUser = { ...user, password: passwordBcrypt }
+      const hashPassword = await bcrypt.hash(user.password, 8)
+
+      const newUser = userRepository.create({
+        ...user,
+        password: hashPassword
+      })
+
       await userRepository.save(newUser)
+
       return newUser
     } catch (error) {
       console.error(`Error - create user: ${error}`)

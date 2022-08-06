@@ -10,6 +10,7 @@ routes.get('/', (req, res) => {
 routes.get('/users', UserController.index)
 routes.get('/users/:id', UserController.findUserId)
 routes.post('/users', UserController.store)
+routes.post('/users/login')
 routes.put('/users/:id', UserController.update)
 routes.delete('/users/:id', UserController.destroy)
 
