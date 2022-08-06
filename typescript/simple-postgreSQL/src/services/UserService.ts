@@ -1,5 +1,6 @@
 import { IUser } from '../interfaces/user'
 import { userRepository } from '../repositiries/userRepository'
+import bcrypt from 'bcrypt'
 
 class UserService {
   async index () {
@@ -34,7 +35,9 @@ class UserService {
 
   async store (user: IUser) {
     try {
-      const newUser = await userRepository.save(user)
+      const passwordBcrypt = await bcrypt.hash(user.password, 8)
+      const newUser = { ...user, password: passwordBcrypt }
+      await userRepository.save(newUser)
       return newUser
     } catch (error) {
       console.error(`Error - create user: ${error}`)
