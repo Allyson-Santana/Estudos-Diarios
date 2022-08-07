@@ -34,7 +34,7 @@ class App {
     this.app.use(routes)
   }
 
-  private initializeErrorHandling () {
+  private initializeErrorHandling (): void {
     this.app.use(errorMiddleware)
   }
 }
