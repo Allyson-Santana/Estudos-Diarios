@@ -4,12 +4,14 @@ interface IUser extends Document {
   email?: string
   firstName?: string
   lastName?: string
+  password?: string
 }
 
 const UserSchema = new Schema({
-  email: String,
   firstName: String,
-  lastName: String
+  lastName: String,
+  email: String,
+  password: String
 }, {
   timestamps: true
 })

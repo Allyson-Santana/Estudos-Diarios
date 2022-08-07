@@ -4,9 +4,12 @@ import * as yup from 'yup'
 import { ApiError } from '../helpers/ApiError'
 
 class UserController {
+  /* eslint-disable */ 
+
   public async index (req: Request, res: Response, next: NextFunction) {
     try {
-      const users = await UserService.index()
+      const allUsers = await UserService.index()
+      const users = allUsers.map(({ password, ...user }) => user)
       return res.json(users)
     } catch (error) {
       next(error)
@@ -16,23 +19,27 @@ class UserController {
   public async find (req: Request, res: Response, next: NextFunction) {
     try {
       const { id } = req.params
-      const user = await UserService.findById(id)
+      const { password, ...user } = await UserService.findById(id)
         .catch(() => new ApiError(400, 'User not exists'))
+
       return res.json(user)
     } catch (error) {
       next(error)
     }
   }
 
+  /* eslint-enable */
+
   public async store (req: Request, res: Response, next: NextFunction) {
     try {
-      const { firstName, lastName, email } = req.body
-      const user = { firstName, lastName, email }
+      const { firstName, lastName, email, password } = req.body
+      const user = { firstName, lastName, email, password }
 
       const schemas = yup.object().shape({
         firstName: yup.string().required(),
         lastName: yup.string().required(),
-        email: yup.string().email().required()
+        email: yup.string().email().required(),
+        password: yup.string().required()
       })
 
       const isCheckedSchemas = await schemas.isValid(user)
@@ -51,8 +58,8 @@ class UserController {
   public async update (req: Request, res: Response, next: NextFunction) {
     try {
       const { id } = req.params
-      const { firstName, lastName, email } = req.body
-      const userUpdate = { firstName, lastName, email }
+      const { firstName, lastName, email, password } = req.body
+      const userUpdate = { firstName, lastName, email, password }
 
       await UserService.findById(id).catch(() => new ApiError(400, 'User not exists'))
 

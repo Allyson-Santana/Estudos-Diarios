@@ -1,5 +1,6 @@
 import User from '../schemas/User'
 import { IUser } from '../interfaces/user'
+import bcrypt from 'bcrypt'
 
 class UserService {
   async index () {
@@ -18,7 +19,8 @@ class UserService {
   }
 
   async store (user: IUser) {
-    const newUser = await User.create(user)
+    const hashPassowrd = await bcrypt.hash(user.password, 8)
+    const newUser = await User.create({ ...user, passowrd: hashPassowrd })
     return newUser
   }
 
