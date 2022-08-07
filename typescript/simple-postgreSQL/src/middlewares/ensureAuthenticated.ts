@@ -3,17 +3,16 @@ import { ApiError } from '../helpers/ApiError'
 import JWT from 'jsonwebtoken'
 
 export const ensureAuthenticated = async (req: Request, res: Response, next: NextFunction) => {
-  const { authorization } = req.headers
-
-  if (!authorization) throw new ApiError(401, 'Token unauthorized')
-
-  const [, token] = authorization.split(' ')
-
   try {
+    const { authorization } = req.headers
+    if (!authorization) throw new Error()
+
+    const [, token] = authorization.split(' ')
+
     JWT.verify(token, process.env.JWT_SECRET ?? '')
 
     return next()
   } catch (error) {
-    throw new ApiError(401, 'Token invalid')
+    next(new ApiError(401, 'Token unauthorized'))
   }
 }

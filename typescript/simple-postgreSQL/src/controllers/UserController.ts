@@ -54,11 +54,13 @@ class UserController {
       const userUpdate = req.body
       const { id } = req.params
 
-      const isExistUserWithEmail = await UserService.findUserEmail(userUpdate.email)
-      if (isExistUserWithEmail) throw new ApiError(409, 'E-mail already exists')
-
       const isExistUserWithId = await UserService.findUserId(id)
       if (!isExistUserWithId) throw new ApiError(404, 'User not exists')
+
+      if (userUpdate.email) {
+        const isExistUserWithEmail = await UserService.findUserEmail(userUpdate.email)
+        if (isExistUserWithEmail) throw new ApiError(409, 'E-mail already exists')
+      }
 
       await UserService.update(id, userUpdate)
       return res.sendStatus(204)

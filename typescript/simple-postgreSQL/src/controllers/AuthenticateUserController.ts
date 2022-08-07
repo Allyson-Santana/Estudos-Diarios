@@ -27,7 +27,7 @@ class AuthenticateUserController {
 
       const token = JWT.sign({ id: userAlreadyExists.id }, process.env.JWT_SECRET ?? '', {
         subject: userAlreadyExists.id,
-        expiresIn: '1hs'
+        expiresIn: '1h'
       })
 
       const { password: _, ...userInfo } = userAlreadyExists
