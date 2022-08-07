@@ -21,7 +21,9 @@ class App {
   }
 
   private database (): void {
-    mongoose.connect('mongodb://localhost:27017/initialTs', () => {
+    const { MONGOD_URL, MONGOD_PORT, MONGOD_DB_NAME } = process.env
+
+    mongoose.connect(`${MONGOD_URL}:${MONGOD_PORT}/${MONGOD_DB_NAME}`, () => {
       console.info('Connection in mongoose success...')
     })
   }
