@@ -3,23 +3,23 @@ import cors from 'cors'
 
 import routes from './routes'
 import { PostgresDataSource } from './database/connection'
-import { errorMiddleware } from './middlewares/apiError'
+import { errorMiddleware } from './middlewares/error'
 
 class App {
-  public express: express.Application
+  public app: express.Application
 
   public constructor () {
-    this.express = express()
+    this.app = express()
 
     this.middlewares()
     this.database()
     this.routes()
-    this.prepareExpressError()
+    this.initializeErrorHandling()
   }
 
   private middlewares (): void {
-    this.express.use(express.json())
-    this.express.use(cors())
+    this.app.use(express.json())
+    this.app.use(cors())
   }
 
   private database (): void {
@@ -31,12 +31,12 @@ class App {
   }
 
   private routes (): void {
-    this.express.use(routes)
+    this.app.use(routes)
   }
 
-  private prepareExpressError () {
-    this.express.use(errorMiddleware)
+  private initializeErrorHandling () {
+    this.app.use(errorMiddleware)
   }
 }
 
-export default new App().express
+export default new App().app

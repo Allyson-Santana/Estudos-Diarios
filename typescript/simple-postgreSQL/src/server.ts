@@ -1,5 +1,6 @@
-import 'reflect-metadata'
 import 'express-async-error'
+import 'dotenv/config'
+import 'reflect-metadata'
 
 import app from './app'
 
