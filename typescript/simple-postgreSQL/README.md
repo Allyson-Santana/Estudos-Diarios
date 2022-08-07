@@ -4,7 +4,8 @@
 - typescript - Desenvolvimento
 - express - Manipulação das Request/Rotas
 - cors - Manipulação de acesso à API
-- postgreSQL - Banco de Dados
+- pg / postgreSQL - Banco de Dados SQL
+- Typeorm - ORM de banco de dados Relacional
 - yup - Validação de Schema da Request
 - dotenv - Variáveis de ambiente
 - bcrypt - Criptocrafia de senha de usuário
