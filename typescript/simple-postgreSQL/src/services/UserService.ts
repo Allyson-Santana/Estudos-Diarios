@@ -1,16 +1,16 @@
-import { IUser } from '../interfaces/user'
+import { ICreateUser, IUser } from '../interfaces/user'
 import { userRepository } from '../repositiries/userRepository'
 import bcrypt from 'bcrypt'
 
 class UserService {
-  async index () {
+  async index (): Promise<IUser[]> {
     const users = await userRepository.find()
     return users
   }
 
-  async findUserEmail (email: string) {
-    const users = await userRepository.findOne({ where: { email } })
-    return users
+  async findUserEmail (email: string): Promise<IUser | null> {
+    const user = await userRepository.findOne({ where: { email } })
+    return user
   }
 
   async findUserId (id: string): Promise<IUser | null> {
@@ -18,7 +18,7 @@ class UserService {
     return users
   }
 
-  async store (user: IUser) {
+  async store (user: ICreateUser): Promise<IUser> {
     const hashPassword = await bcrypt.hash(user.password, 8)
 
     const newUser = userRepository.create({

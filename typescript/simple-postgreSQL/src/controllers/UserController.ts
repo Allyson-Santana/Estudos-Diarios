@@ -6,8 +6,9 @@ import { ApiError } from '../helpers/ApiError'
 class UserController {
   async index (req: Request, res: Response, next: NextFunction) {
     try {
-      const newUser = await UserService.index()
-      return res.status(200).json(newUser)
+      const Allusers = await UserService.index()
+      const users = Allusers.map(({ password, ...restUser }) => restUser)
+      return res.status(200).json(users)
     } catch (error) {
       next(error)
     }
@@ -39,8 +40,10 @@ class UserController {
       const isExistUserWithEmail = await UserService.findUserEmail(user.email)
       if (isExistUserWithEmail) throw new ApiError(409, 'E-mail already exists')
 
-      const { password: _, ...newUser } = await UserService.store(user)
-      return res.status(201).json(newUser)
+      const newUser = await UserService.store(user)
+      const { password: _, ...restUser } = newUser
+
+      return res.status(201).json(restUser)
     } catch (error) {
       next(error)
     }
