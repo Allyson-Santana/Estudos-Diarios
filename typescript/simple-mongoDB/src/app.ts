@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose'
 import routes from './routes'
+import { handleErrorExeptions } from './middlewares/handleErrorExeptions'
 
 class App {
   public express: express.Application
@@ -11,6 +12,7 @@ class App {
     this.middlewares()
     this.database()
     this.routes()
+    this.initializeErrorHandling()
   }
 
   private middlewares (): void {
@@ -26,6 +28,10 @@ class App {
 
   private routes (): void {
     this.express.use(routes)
+  }
+
+  private initializeErrorHandling (): void {
+    this.express.use(handleErrorExeptions)
   }
 }
 
