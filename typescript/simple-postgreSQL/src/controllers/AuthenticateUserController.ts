@@ -4,7 +4,7 @@ import * as yup from 'yup'
 import { ApiError } from '../helpers/ApiError'
 import UserService from '../services/UserService'
 import JWT from 'jsonwebtoken'
-import { PayloadJWT } from '../interfaces/jwt'
+import { IPayloadJWT } from '../interfaces/jwt'
 
 class AuthenticateUserController {
   async login (req: Request, res: Response, next: NextFunction) {
@@ -46,7 +46,7 @@ class AuthenticateUserController {
 
       const [, token] = authorization.split(' ')
 
-      const { id } = JWT.verify(token, process.env.JWT_SECRET ?? '') as PayloadJWT
+      const { id } = JWT.verify(token, process.env.JWT_SECRET ?? '') as IPayloadJWT
 
       const user = await UserService.findUserId(id)
 
